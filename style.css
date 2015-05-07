@@ -36,7 +36,7 @@ a:hover { text-decoration: none; }
 
 .menu { background-color: #222; padding: 20px 0 10px; box-shadow: 2px 2px 10px rgba(0,0,0,0.4); z-index: 5; position: relative; }
 
-.tabs { width: 50%; display: inline-block; float: right; }
+.tabs { width: auto; display: inline-block; float: right; }
 
 .tab {
     /*color: #fff;*/
@@ -113,7 +113,7 @@ a:hover { text-decoration: none; }
 .rooms table, #schedule table { margin: 0; color: #222; font-size: 1.2em; margin-top: 10px; }
 .rooms table tr:nth-child(even) { background-color: rgba(0,0,0,0.05); }
 .rooms table th { font-size: 1.2em; background-color: #333; color: #fff; }
-.rooms table td, .rooms table th { padding-left: 20px !important; padding-right: 20px !important; }
+.rooms table:not(#days) td, .rooms table:not(#days) th { padding-left: 20px !important; padding-right: 20px !important; }
 
 .fans, .setting {
     width: 50%;
@@ -204,7 +204,7 @@ h1 {
     text-decoration: none;
     color: #2A363B;
     font-size: 1.8rem;
-    padding: 10px 10px;
+    padding: 10px 10px !important;
     display: inline-block;
 }
 
@@ -291,7 +291,6 @@ h1 {
     .clear { display: none !important; clear: none !important; }
     #wrap { background-image: url('http://www.hdwallpapersinn.com/wp-content/uploads/2014/08/wonderful-wallpapers-91.jpg'); }
     .temp .degree { color: #333; }
-    .tabs { width: auto; }
 }
 
 @media (max-width: 600px) {
