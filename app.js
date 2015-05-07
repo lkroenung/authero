@@ -181,11 +181,11 @@ app.controller('mainController', ['$scope', '$http', function($scope, $http) {
 
     $scope.server_url = 'http://robertrdunn.com:8080/';
 
-    $scope.currentTemps = '';
-    $scope.targetTemp = '';
-    $scope.fanState = '';
-    $scope.tempMode = '';
-    $scope.schedules = '';
+    $scope.currentTemps = ' ';
+    $scope.targetTemp = ' ';
+    $scope.fanState = ' ';
+    $scope.tempMode = ' ';
+    $scope.schedules = ' ';
 
     // initialize some variables with calls to the web API
     $scope.getTargetTemp();
