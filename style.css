@@ -4,7 +4,7 @@
 
 html, body { font-size: 14px; height: 100%; }
 .clear { float: none; display: block; clear: both; }
-.container-fluid { padding: 0; width: 85%; margin: 0 auto; }
+.container-fluid { padding: 0; width: 100%; margin: 0 auto; }
 .row { max-width: 1000px; width: 100%; margin: 0 auto; }
 a:hover { text-decoration: none; }
 .clear { display: block; clear: both; }
@@ -12,11 +12,12 @@ a:hover { text-decoration: none; }
 #wrap {
     min-height: 100%;
     margin: 0 auto;
-    padding: 15px 0;
-    background-color: #2A363B;
+    padding: 0;
+    background-color: #fff;
+    /*background-color: #2A363B;*/
     /*background-image: url('blurred-texture-background08.jpg');*/
     /*background-image: url('http://fc00.deviantart.net/fs71/i/2011/268/b/f/blue_water_stock_background_by_mysticbubblesz-d4ax3cr.jpg');*/
-    background-image: url('http://www.hdwallpapersinn.com/wp-content/uploads/2014/08/wonderful-wallpapers-91.jpg');
+    /*background-image: url('http://www.hdwallpapersinn.com/wp-content/uploads/2014/08/wonderful-wallpapers-91.jpg');*/
     background-size: cover;
     position: relative;
     font-family: 'Roboto', arial, sans-serif;
@@ -28,25 +29,32 @@ a:hover { text-decoration: none; }
     color: #fff;
 }
 
-.logo { display: none; }
+.logo, .tab { line-height: 40px; }
+
+.logo { display: inline-block; width: 40%; vertical-align: top; font-size: 2.2em !important; font-weight: 300; }
+.logo img { height: 40px; width: auto; margin-right: 12px; margin-left: 10px; position: relative; top: -5px; }
+
+.menu { background-color: #222; padding: 20px 0 10px; box-shadow: 2px 2px 10px rgba(0,0,0,0.4); z-index: 5; position: relative; }
+
+.tabs { width: 50%; display: inline-block; float: right; }
 
 .tab {
     /*color: #fff;*/
-    font-size: 1.5em;
+    font-size: 1.8em;
     text-align: center;
-    width: 45%;
+    width: auto;
     margin: 0px 0 0;
-    font-weight: 700;
+    font-weight: 300;
     position: relative;
 }
 
-.tab a { display: block; height: 100%; padding: 10px 5px; color: #fff; }
+.tab a { display: block; height: 100%; padding: 5px 5px; color: #fff; }
 
-.tab:first-child { margin-right: 10%; }
+/*.tab:first-child { margin-right: 10%; margin-left: 15%; }*/
 
 .tab.highlight { background-color: rgba(255,255,255, 1); }
 .tab.highlight a { color: rgba(42,54,59, 0.9); }
-.tab.highlight:after {
+/*.tab.highlight:after {
     content: ' ';
     height: 0;
     position: absolute;
@@ -56,14 +64,16 @@ a:hover { text-decoration: none; }
     top: 100%;
     left: 50%;
     margin-left: -10px;
-}
+}*/
 
 .temp {
-    margin-top: 25px;
+    /*margin-top: 25px;*/
     text-align: center;
     position: relative;
     padding: 0 0 10px;
-    border-radius: 15px;
+    /*border-radius: 15px;*/
+    /*z-index: 0;*/
+    text-shadow: 2px 2px 7px rgba(0, 0, 0, 0.4); 
 }
 
 .temp .degree {
@@ -72,7 +82,7 @@ a:hover { text-decoration: none; }
     text-align: center;
     font-size: 10em;
     line-height: 120%;
-    /*color: #fff;*/
+    color: #fff;
     font-family: 'Montserrat', arial, sans-serif;
 }
 
@@ -86,37 +96,40 @@ a:hover { text-decoration: none; }
 
 .temp .up, .temp .down {
     display: inline-block;
-    width: 25%;
+    width: 20%;
     position: relative;
     top: -10px;
     padding-bottom: 0px;
 }
-.temp .up { margin-left: 5%; }
-.temp .down { margin-right: 5%; }
+.temp .up { margin-left: 1%; }
+.temp .down { margin-right: 1%; }
 
 .temp .up:hover, .temp .down:hover { pointer: pointer; }
 .temp .up:active, .temp .down:active  { border: 5px solid transparent; }
 
 .temp img { width: 90%; }
 
-.rooms { margin-top: 25px; padding: 15px 20px; border-radius: 15px; }
-.rooms table, #schedule table { margin: 0; color: #fff; }
+.rooms { margin-top: 10px; padding: 15px 30px; border-radius: 15px; }
+.rooms table, #schedule table { margin: 0; color: #222; font-size: 1.2em; margin-top: 10px; }
+.rooms table tr:nth-child(even) { background-color: rgba(0,0,0,0.05); }
+.rooms table th { font-size: 1.2em; background-color: #333; color: #fff; }
+.rooms table td, .rooms table th { padding-left: 20px !important; padding-right: 20px !important; }
 
 .fans, .setting {
-    width: 45%;
-    margin: 25px 0 0;
+    width: 50%;
+    margin: 0px 0 0;
     height: auto;
     border-radius: 15px;
     position: relative;
 }
-.fans { margin-right: 10%; }
+/*.fans { margin-right: 5%; }*/
 
 .fans a, .setting a {
-    color: #fff;
+    color: #222;
     display: block;
     text-align: center;
-    font-size: 1.2em;
-    padding: 15px 0;
+    font-size: 1.6em;
+    padding: 20px 0;
 }
 .fans a strong, .setting a strong {
     margin-right: 10px;
@@ -124,7 +137,7 @@ a:hover { text-decoration: none; }
 
 .fans .switch, .setting .switch {
     position: absolute;
-    bottom: 0;
+    top: 0;
     display: none;
     /*display: block;*/
     width: 100%;
@@ -189,15 +202,15 @@ h1 {
 
 #schedule table#days a {
     text-decoration: none;
-    color: #fff;
+    color: #2A363B;
     font-size: 1.8rem;
     padding: 10px 10px;
     display: inline-block;
 }
 
 #schedule table#days a.highlight {
-    background-color: #fff;
-    color: #2A363B;
+    background-color: #2A363B;
+    color: #fff;
     position: relative;
 }
 
@@ -210,7 +223,7 @@ h1 {
     height: 0; 
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
-    border-top: 10px solid #fff;
+    border-top: 10px solid #2A363B;
     margin-left: -10px;
 }
 
@@ -220,19 +233,20 @@ h1 {
 }
 
 #schedule table#rows thead td {
-    background-color: #bbb;
+    background-color: #fff;
     color: #000;
     font-weight: bold;
     /*border-bottom: 2px solid #fff;*/
 }
 
-#schedule table#rows thead tr.heading td { background-color: #fff; padding: 5px 0; font-size: 1.2em; }
+#schedule table#rows thead tr.heading td { background-color: #333; padding: 5px 0; font-size: 1.2em; color: #fff; }
 
 #schedule table#rows td {
     padding: 0px;
-    color: #fff;
+    color: #222;
 }
-#schedule table#rows tr:nth-child(even) { background-color: rgba(255,255,255,0.05); }
+#schedule table#rows tr:nth-child(even) { background-color: rgba(0,0,0,0.05); }
+
 .flip {
     -moz-transform: scaleY(-1);
     -webkit-transform: scaleY(-1);
@@ -242,11 +256,13 @@ h1 {
     filter: flipv;
 }
 
+.fix { display: none; }
+
 @media (min-width: 600px) {
     .rooms { float: right; width: 60%; margin-left: 3%; margin-right: 0; padding-right: 5%; }
     /*.fans, .setting { width: 22%; }*/
     /*.fans { margin-right: 3%; }*/
-    .temp { width: 37%; }
+    .temp { width: 37%; color: #333 !important; }
     .tab { width: 47%; }
     .tab:first-child { margin-right: 6%; }
     .menu { display: block; background-color: #333; border-bottom: 5px solid tomato; padding: 10px 0 7px; }
@@ -262,13 +278,33 @@ h1 {
     .tab.highlight:after { display: none; }
     .tab a:hover { background-color: #fff; color: #333 !important; }
     #wrap { padding: 60px 0; }
-    .main { background-color: #eee; box-shadow: 2px 2px 10px rgba(0,0,0,0.4);  padding-bottom: 25px; }
+    .main { position: relative; background-color: #eee; box-shadow: 2px 2px 10px rgba(0,0,0,0.4);  padding-bottom: 25px; }
     .fade-background { background-color: transparent; box-shadow: none; color: #333 !important; }
-    /*.rooms { width: 48%; }*/
+    /*.rooms { position: absolute; top: 0; right: -10px; width: 65%; }*/
     .rooms table { color: #333; font-size: 1.2em; }
     .rooms table td, .rooms table th { padding: 12px !important; }
     #schedule table tr td { padding 5px !important; }
-    .fans { clear: left; margin-right: 2%; margin-left: 3.5%; }
-    .fans, .setting { width: 14%; background-color: rgba(0,0,0,0.5); }
-    #schedule { background-color: rgba(42,54,59, 0.8); }
+    .fans { clear: left; margin-right: 5%; margin-left: 10%; }
+    .fans, .setting { width: 40%; background-color: rgba(0,0,0,0.2); margin-top: 10px; }
+    .fans a, .setting a { font-size: 1.2em; }
+    #schedule { background-color: rgba(42,54,59, 0.05); }
+    .clear { display: none !important; clear: none !important; }
+    #wrap { background-image: url('http://www.hdwallpapersinn.com/wp-content/uploads/2014/08/wonderful-wallpapers-91.jpg'); }
+    .temp .degree { color: #333; }
+    .tabs { width: auto; }
+}
+
+@media (max-width: 600px) {
+    .bar {
+        margin: 0 0 0px;
+        background-color: #eee;
+        box-shadow: 0px 2px 10px rgba(0,0,0,0.4);
+        position: relative;
+        z-index: 10;
+        font-family: 'Montserrat', arial, sans-serif;
+        top: 10px;
+
+    }
+    .temp { background-image: url('http://www.hdwallpapersinn.com/wp-content/uploads/2014/08/wonderful-wallpapers-91.jpg'); }
+
 }

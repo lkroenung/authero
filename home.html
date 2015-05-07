@@ -1,7 +1,7 @@
 <script>
 
-    $('.fans .switch').css( "bottom", "50px" );
-    $('.setting .switch').css( "bottom", "50px" );
+    $('.fans .switch').css( "bottom", "70px" );
+    $('.setting .switch').css( "bottom", "70px" );
 
     // $('#toggleFanMenu').click(function() {
     //     // $('.fans .switch').css( "display", "block" );
@@ -19,26 +19,73 @@
         </div>
 
         <div class="tabs">
-            <div class="tab fade-background highlight col-xs-5">
+            <div class="tab highlight col-xs-5">
                 <a href="#">Home</a>
             </div>
 
-            <div class="tab fade-background col-xs-5">
+            <div class="tab col-xs-5">
                 <a href="#/schedule">Schedule</a>
             </div>
+
+            <div class="clear"></div>
         </div>
     </div>
 
     <div class="row main">
-        <div class="temp fade-background col-xs-12">
+        <div class="temp col-xs-12">
             <div class="degree">{{ targetTemp }}<span>&deg;</span></div>
             <div id="temp_controls">
                 <div class="down" ng-click="tempDown()"><img class="flip" src="_img/temp-down.png" /></div>
                 <div class="up" ng-click="tempUp()"><img src="_img/temp-up.png" /></div>
             </div>
+
+            <div class="bar">
+                <div class="fans col-xs-5 ">
+                    <div class="switch">
+                        <ul>
+                            <li><a href="" ng-click="setFanState('ON')">ON</a></li>
+                            <li><a href="" ng-click="setFanState('OFF')">OFF</a></li>
+                            <li><a href="" ng-click="setFanState('AUTO')">AUTO</a></li>
+                        </ul>
+                    </div>
+                    <div ng-switch="fanState">
+                        <div ng-click="toggleFanMenu()">
+                            <div ng-switch-when="ON"><a href=""><strong>FAN:</strong> ON</a></div>
+                            <div ng-switch-when="OFF"><a href=""><strong>FAN:</strong> OFF</a></div>
+                            <div ng-switch-when="AUTO"><a href=""><strong>FAN:</strong> AUTO</a></div>
+                            <div ng-switch-default>error</div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="setting col-xs-5">
+                    <div class="switch">
+                        <ul>
+                            <li><a href="" ng-click="setTempMode('HEAT')">HEAT</a></li>
+                            <li><a href="" ng-click="setTempMode('COOL')">COOL</a></li>
+                            <li><a href="" ng-click="setTempMode('AUTO')">AUTO</a></li>
+                            <li><a href="" ng-click="setTempMode('OFF')">OFF</a></li>
+                        </ul>
+                    </div>
+                    <div ng-switch="tempMode">
+                        <div ng-click="toggleTempMenu()">
+                            <div ng-switch-when="HEAT"><a href=""><strong>MODE:</strong> HEAT</a></div>
+                            <div ng-switch-when="COOL"><a href=""><strong>MODE:</strong> COOL</a></div>
+                            <div ng-switch-when="AUTO"><a href=""><strong>MODE:</strong> AUTO</a></div>
+                            <div ng-switch-when="OFF"><a href=""><strong>MODE:</strong> OFF</a></div>
+                            <div ng-switch-default>error</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
         </div>
 
-        <div class="rooms fade-background col-xs-12 ">
+        <div class="clear"></div>
+        
+
+        <div class="rooms col-xs-12 ">
             
             <table class="table">
                 <thead>
@@ -58,44 +105,7 @@
 
         </div>
 
-        <div class="fans fade-background col-xs-5 ">
-            <div class="switch">
-                <ul>
-                    <li><a href="" ng-click="setFanState('ON')">ON</a></li>
-                    <li><a href="" ng-click="setFanState('OFF')">OFF</a></li>
-                    <li><a href="" ng-click="setFanState('AUTO')">AUTO</a></li>
-                </ul>
-            </div>
-            <div ng-switch="fanState">
-                <div ng-click="toggleFanMenu()">
-                    <div ng-switch-when="ON"><a href=""><strong>FAN:</strong> ON</a></div>
-                    <div ng-switch-when="OFF"><a href=""><strong>FAN:</strong> OFF</a></div>
-                    <div ng-switch-when="AUTO"><a href=""><strong>FAN:</strong> AUTO</a></div>
-                    <div ng-switch-default>error</div>
-                </div>
-            </div>
-            <div class="clear"></div>
-        </div>
-
-        <div class="setting fade-background col-xs-5">
-            <div class="switch">
-                <ul>
-                    <li><a href="" ng-click="setTempMode('HEAT')">HEAT</a></li>
-                    <li><a href="" ng-click="setTempMode('COOL')">COOL</a></li>
-                    <li><a href="" ng-click="setTempMode('AUTO')">AUTO</a></li>
-                    <li><a href="" ng-click="setTempMode('OFF')">OFF</a></li>
-                </ul>
-            </div>
-            <div ng-switch="tempMode">
-                <div ng-click="toggleTempMenu()">
-                    <div ng-switch-when="HEAT"><a href=""><strong>MODE:</strong> HEAT</a></div>
-                    <div ng-switch-when="COOL"><a href=""><strong>MODE:</strong> COOL</a></div>
-                    <div ng-switch-when="AUTO"><a href=""><strong>MODE:</strong> AUTO</a></div>
-                    <div ng-switch-when="OFF"><a href=""><strong>MODE:</strong> OFF</a></div>
-                    <div ng-switch-default>error</div>
-                </div>
-            </div>
-        </div>
+        
     </div>
 
 </div>
