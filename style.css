@@ -107,7 +107,7 @@ a:hover { text-decoration: none; }
 .temp .up:hover, .temp .down:hover { pointer: pointer; }
 .temp .up:active, .temp .down:active  { border: 5px solid transparent; }
 
-.temp img { width: 90%; }
+.temp img { width: 75%; }
 
 .rooms { margin-top: 10px; padding: 15px 30px; border-radius: 15px; }
 .rooms table, #schedule table { margin: 0; color: #222; font-size: 1.2em; margin-top: 10px; }
@@ -128,7 +128,7 @@ a:hover { text-decoration: none; }
     color: #222;
     display: block;
     text-align: center;
-    font-size: 1.6em;
+    font-size: 1.4em;
     padding: 20px 0;
 }
 .fans a strong, .setting a strong {
