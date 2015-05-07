@@ -179,6 +179,14 @@ app.controller('mainController', ['$scope', '$http', function($scope, $http) {
             });
     };
 
+    $scope.selectSchedule = function(schedule) {
+        $http({method: 'PUT', url: $scope.server_url + 'schedule/select/'}).
+            success(function(data, status) {
+            }).
+            error(function(data, status) {
+            });
+    };
+
     $scope.server_url = 'http://robertrdunn.com:8080/';
 
     $scope.currentTemps = ' ';

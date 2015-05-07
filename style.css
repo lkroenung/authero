@@ -239,7 +239,8 @@ h1 {
     /*border-bottom: 2px solid #fff;*/
 }
 
-#schedule table#rows thead tr.heading td { background-color: #333; padding: 5px 0; font-size: 1.2em; color: #fff; }
+#schedule table#rows thead tr.heading td { text-align: left; background-color: #333; padding: 5px 0; font-size: 1.2em; color: #fff; }
+#schedule table#rows thead tr.heading td a { float: right; background-color: #689ba8; color: #fff; font-size: 0.8em; position: relative; top: 1px; padding: 2px 8px; font-style: italic; border-radius: 5px; }
 
 #schedule table#rows td {
     padding: 0px;
@@ -287,7 +288,6 @@ h1 {
     .fans { clear: left; margin-right: 5%; margin-left: 10%; }
     .fans, .setting { width: 40%; background-color: rgba(0,0,0,0.2); margin-top: 10px; }
     .fans a, .setting a { font-size: 1.2em; }
-    #schedule { background-color: rgba(42,54,59, 0.05); }
     .clear { display: none !important; clear: none !important; }
     #wrap { background-image: url('http://www.hdwallpapersinn.com/wp-content/uploads/2014/08/wonderful-wallpapers-91.jpg'); }
     .temp .degree { color: #333; }
@@ -304,6 +304,7 @@ h1 {
         top: 10px;
 
     }
+    #schedule { background-color: rgba(42,54,59, 0.05); }
     .temp { background-image: url('http://www.hdwallpapersinn.com/wp-content/uploads/2014/08/wonderful-wallpapers-91.jpg'); }
 
 }

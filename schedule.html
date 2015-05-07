@@ -87,11 +87,13 @@
             <div id="schedule">
                 <table id="days">
                     <tr>
-                        <td><a href="#">M</a></td>
-                        <td><a href="#" class="highlight">Tu</a></td>
-                        <td><a href="#">W</a></td>
-                        <td><a href="#">Th</a></td>
-                        <td><a href="#">F</a></td>
+                        <td><a href="" onclick="javascript: draw_graph(sunday_data); highlight_day(this)">Su</a></td>
+                        <td><a href="" onclick="javascript: draw_graph(monday_data); highlight_day(this)">M</a></td>
+                        <td><a href="" onclick="javascript: draw_graph(tuesday_data); highlight_day(this)">Tu</a></td>
+                        <td><a href="" onclick="javascript: draw_graph(wednesday_data); highlight_day(this)">W</a></td>
+                        <td><a href="" onclick="javascript: draw_graph(thursday_data); highlight_day(this)" class="highlight">Th</a></td>
+                        <td><a href="" onclick="javascript: draw_graph(friday_data); highlight_day(this)">F</a></td>
+                        <td><a href="" onclick="javascript: draw_graph(saturday_data); highlight_day(this)">Sa</a></td>
                     </tr>
                 </table>
 
@@ -100,7 +102,7 @@
                 <table id="rows" ng-repeat="row in schedules track by $index">
                     <thead>
                         <tr class="heading">
-                            <td colspan="3">{{row.name}}</td>
+                            <td colspan="3">{{row.name}} Schedule <a href="" ng-click="selectSchedule('row.name')">Select</a></td>
                         </tr>
                         <tr>
                             <td>Day</td>
@@ -137,30 +139,21 @@
 
 <script>
 // Get the context of the canvas element we want to select
+    var highlight_day = function(ele) {
+        // console.log(ele);
+        $('td > a.highlight').removeClass('highlight');
+        ele.className = "highlight";
+    }
+
+    var draw_graph = function(my_data) {
+
+        console.log(my_data['label']);
+
         var ctx = document.getElementById("myChart").getContext("2d");
         var data = {
             labels: ["12AM", "3AM", "6AM", "9AM", "12PM", "3PM", "6PM", "9PM"],
             datasets: [
-                {
-                    label: "My First dataset",
-                    fillColor: "rgba(0,0,0,0.2)",
-                    strokeColor: "rgba(0,0,0,1)",
-                    pointColor: "rgba(0,0,0,1)",
-                    pointStrokeColor: "#fff",
-                    pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(0,0,0,1)",
-                    data: [75, 78, 80, 81, 72, 69, 74, 80]
-                },
-                // {
-                //     label: "My Second dataset",
-                //     fillColor: "rgba(151,187,205,0.2)",
-                //     strokeColor: "rgba(151,187,205,1)",
-                //     pointColor: "rgba(151,187,205,1)",
-                //     pointStrokeColor: "#fff",
-                //     pointHighlightFill: "#fff",
-                //     pointHighlightStroke: "rgba(151,187,205,1)",
-                //     data: [80, 76, 77, 71, 69, 66, 75, 80]
-                // }
+                my_data
             ]
         };
         var options = {
@@ -214,4 +207,112 @@
 
         };
         var myLineChart = new Chart(ctx).Line(data, options);
+    }
+
+    var sunday_data = {
+                    label: "Sunday",
+                    fillColor: "rgba(42,54,59,0.5)",
+                    strokeColor: "rgba(0,0,0,1)",
+                    pointColor: "rgba(0,0,0,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(0,0,0,1)",
+                    data: [75, 78, 80, 81, 72, 69, 74, 80]
+                };
+    var monday_data = {
+                    label: "Monday",
+                    fillColor: "rgba(42,54,59,0.5)",
+                    strokeColor: "rgba(0,0,0,1)",
+                    pointColor: "rgba(0,0,0,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(0,0,0,1)",
+                    data: [80, 81, 72, 69, 72, 78,  74, 80]
+                };
+    var tuesday_data = {
+                    label: "Tuesday",
+                    fillColor: "rgba(42,54,59,0.5)",
+                    strokeColor: "rgba(0,0,0,1)",
+                    pointColor: "rgba(0,0,0,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(0,0,0,1)",
+                    data: [75, 72, 69, 74, 80, 78, 80, 81,]
+                };
+    var wednesday_data = {
+                    label: "Wednesday",
+                    fillColor: "rgba(42,54,59,0.5)",
+                    strokeColor: "rgba(0,0,0,1)",
+                    pointColor: "rgba(0,0,0,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(0,0,0,1)",
+                    data: [69, 74, 80, 75, 78, 80, 81, 72]
+                };
+    var thursday_data = {
+                    label: "Thursday",
+                    fillColor: "rgba(42,54,59,0.5)",
+                    strokeColor: "rgba(0,0,0,1)",
+                    pointColor: "rgba(0,0,0,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(0,0,0,1)",
+                    data: [75, 78, 77, 81, 72, 70, 74, 80]
+                };
+    var friday_data = {
+                    label: "Friday",
+                    fillColor: "rgba(42,54,59,0.5)",
+                    strokeColor: "rgba(0,0,0,1)",
+                    pointColor: "rgba(0,0,0,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(0,0,0,1)",
+                    data: [ 76, 75, 79, 83, 85, 84, 83, 80]
+                };
+    var saturday_data = {
+                    label: "Saturday",
+                    fillColor: "rgba(42,54,59,0.5)",
+                    strokeColor: "rgba(0,0,0,1)",
+                    pointColor: "rgba(0,0,0,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(0,0,0,1)",
+                    data: [72, 78, 82, 81, 72, 75, 74, 80]
+                };
+
+    draw_graph(sunday_data);
+
+
+
+    // {
+                //     label: "Monday",
+                //     fillColor: "rgba(42,54,59,0.5)",
+                //     strokeColor: "rgba(0,0,0,1)",
+                //     pointColor: "rgba(0,0,0,1)",
+                //     pointStrokeColor: "#fff",
+                //     pointHighlightFill: "#fff",
+                //     pointHighlightStroke: "rgba(0,0,0,1)",
+                //     data: [75, 90, 80, 81, 72, 69, 74, 80]
+                // },
+                // {
+                //     label: "Tuesday",
+                //     fillColor: "rgba(42,54,59,0.5)",
+                //     strokeColor: "rgba(0,0,0,1)",
+                //     pointColor: "rgba(0,0,0,1)",
+                //     pointStrokeColor: "#fff",
+                //     pointHighlightFill: "#fff",
+                //     pointHighlightStroke: "rgba(0,0,0,1)",
+                //     data: [75, 78, 80, 65, 72, 69, 74, 80]
+                // },
+                // {
+                //     label: "Wednesday",
+                //     fillColor: "rgba(42,54,59,0.5)",
+                //     strokeColor: "rgba(0,0,0,1)",
+                //     pointColor: "rgba(0,0,0,1)",
+                //     pointStrokeColor: "#fff",
+                //     pointHighlightFill: "#fff",
+                //     pointHighlightStroke: "rgba(0,0,0,1)",
+                //     data: [75, 78, 99, 81, 72, 69, 74, 80]
+                // }
+        
 </script>
