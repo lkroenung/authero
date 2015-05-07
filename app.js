@@ -43,6 +43,7 @@ app.controller('mainController', ['$scope', '$http', function($scope, $http) {
 
     // sets target temp up one degree
     $scope.tempUp = function() {
+        console.log('temp up');
         $http({method: 'PUT', url: $scope.server_url + 'thermostat/tempUp'}).
             success(function(data, status) {
                 console.log('success');
@@ -55,6 +56,7 @@ app.controller('mainController', ['$scope', '$http', function($scope, $http) {
 
     // sets target temp down one degree
     $scope.tempDown = function() {
+        console.log('temp down');
         $http({method: 'PUT', url: $scope.server_url + 'thermostat/tempDown'}).
             success(function(data, status) {
                 console.log('success');
@@ -159,15 +161,15 @@ app.controller('mainController', ['$scope', '$http', function($scope, $http) {
     $scope.tempMode = 'init';
 
     // initialize some variables with calls to the web API
-    // $scope.getTargetTemp();
+    $scope.getTargetTemp();
     $scope.getCurrentTemp();
-    // $scope.getFanState();
-    // $scope.getTempMode();
+    $scope.getFanState();
+    $scope.getTempMode();
 
     // $scope.currentTemps = { '0': '72', '1': '70', 'average': '71' };    // temp data
-    $scope.targetTemp = { 'targetTemp': '75' };                         // temp data
-    $scope.targetTemp = $scope.targetTemp['targetTemp'];                // temp data
-    $scope.fanState = "ON";                                            // temp data
-    $scope.tempMode = "COOL";                                           // temp data
+    // $scope.targetTemp = { 'targetTemp': '75' };                         // temp data
+    // $scope.targetTemp = $scope.targetTemp['targetTemp'];                // temp data
+    // $scope.fanState = "ON";                                            // temp data
+    // $scope.tempMode = "COOL";                                           // temp data
 
 }]);
