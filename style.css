@@ -154,6 +154,76 @@ a:hover { text-decoration: none; }
     position: relative;
 }
 
+#schedule {
+    display: block;
+    text-align: center;
+    position: relative;
+    background-color: rgba(42,54,59, 0.7);
+    margin: 5% 5% 0;
+    color: #fff;
+    padding: 10px 0;
+}
+
+h1 {
+    display: block;
+    background-color: #e4df8e;
+    /*background-color: rgba(255,255,255,0.9);*/
+    color: #000;
+    font-weight: 400;
+    padding: 10px 0 7px;
+    font-size: 1.7rem;
+}
+
+#schedule table {
+    width: 100%;
+    position: relative;
+}
+
+#schedule table#days {
+    margin-bottom: 15px;
+}
+
+#schedule table#days a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.8rem;
+    padding: 10px 10px;
+    display: inline-block;
+}
+
+#schedule table#days a.highlight {
+    background-color: #fff;
+    color: #2A363B;
+    position: relative;
+}
+
+#schedule table#days a.highlight::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 0; 
+    height: 0; 
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #fff;
+    margin-left: -10px;
+}
+
+#schedule table#rows {
+    margin-top: 25px;
+    padding: 0 10px;
+}
+
+#schedule table#rows thead td {
+    background-color: #fff;
+    color: #000;
+}
+
+#schedule table#rows td {
+    padding: 5px;
+}
+
 .flip {
     -moz-transform: scaleY(-1);
     -webkit-transform: scaleY(-1);
