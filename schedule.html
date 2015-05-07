@@ -104,6 +104,7 @@
                     <li><a href="" ng-click="setTempMode('HEAT')">HEAT</a></li>
                     <li><a href="" ng-click="setTempMode('COOL')">COOL</a></li>
                     <li><a href="" ng-click="setTempMode('AUTO')">AUTO</a></li>
+                    <li><a href="" ng-click="setTempMode('OFF')">AUTO</a></li>
                 </ul>
             </div>
             <div ng-switch="tempMode">
@@ -111,10 +112,10 @@
                     <div ng-switch-when="HEAT"><a href=""><strong>MODE:</strong> HEAT</a></div>
                     <div ng-switch-when="COOL"><a href=""><strong>MODE:</strong> COOL</a></div>
                     <div ng-switch-when="AUTO"><a href=""><strong>MODE:</strong> AUTO</a></div>
+                    <div ng-switch-when="OFF"><a href=""><strong>MODE:</strong> OFF</a></div>
                     <div ng-switch-default>error</div>
                 </div>
             </div>
-            <!-- <a href="#"><img src="_img/auto.png" /></a> -->
         </div>
     </div>
 

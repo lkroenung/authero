@@ -105,9 +105,7 @@ app.controller('mainController', ['$scope', '$http', function($scope, $http) {
     $scope.getFanState = function() {
         $http({method: 'GET', url: $scope.server_url + 'thermostat/fanState'}).
             success(function(data, status) {
-                // console.log('fanstatewhat', data);
                 $scope.fanState = data['fanState'];
-                // console.log($scope.currentTemps);
             }).
             error(function(data, status) {
                 $scope.fanState = data['fanState'] || "error";
@@ -133,9 +131,7 @@ app.controller('mainController', ['$scope', '$http', function($scope, $http) {
     $scope.getTempMode = function() {
         $http({method: 'GET', url: $scope.server_url + 'thermostat/tempMode'}).
             success(function(data, status) {
-                console.log(data);
                 $scope.tempMode = data['tempMode'];
-                console.log($scope.tempMode);
             }).
             error(function(data, status) {
                 $scope.tempMode = data['tempMode'] || "error";
