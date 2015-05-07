@@ -168,8 +168,11 @@ app.controller('mainController', ['$scope', '$http', function($scope, $http) {
     $scope.getSchedules = function() {
         $http({method: 'GET', url: $scope.server_url + 'schedule/list/'}).
             success(function(data, status) {
-                $scope.schedules = data['schedules'];
-                // console.log($scope.schedules);
+                $scope.schedules = angular.fromJson(data['schedules']);
+                console.log($scope.schedules);
+                for (var i = 0; i < $scope.schedules.length; i++) {
+                    $scope.schedules[i] = angular.fromJson($scope.schedules[i]);
+                }
             }).
             error(function(data, status) {
                 $scope.schedules = data['schedules'] || "error";
