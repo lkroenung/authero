@@ -5,19 +5,23 @@ app.config(function($routeProvider, $httpProvider) {
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';
     $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
 
+    $httpProvider.defaults.useXDomain = true;
+
     $routeProvider
     .when('/', {
       templateUrl: 'home.html', 
       controller: 'mainController'
     })
-    // .when('/schedule', {
-    //   templateUrl: 'schedule.html', 
-    //   controller: 'mainController'
-    // })
+    .when('/schedule', {
+      templateUrl: 'schedule.html', 
+      controller: 'mainController'
+    })
     .otherwise({ redirectTo: '/' });
 });
 
 app.controller('mainController', ['$scope', '$http', function($scope, $http) {
+
+    $http.defaults.useXDomain = true;
 
     $scope.toggleFanMenu = function() {
         if ($('.fans .switch').css('display') == 'none') {
@@ -134,7 +138,7 @@ app.controller('mainController', ['$scope', '$http', function($scope, $http) {
 
     // sets temp mode to parameter mode (HEAT, COOL, AUTO)
     $scope.setTempMode = function(mode) {
-        $http({method: 'PUT', url: $scope.server_url + 'thermostat/tempMode?tempMode=' + mode}).
+        $http({method: 'PUT', url: $scope.server_url + 'thermostat/tempMode', data: { tempMode: mode }}).
             success(function(data, status) {
                 console.log('success');
                 $scope.tempMode = mode;
@@ -156,11 +160,11 @@ app.controller('mainController', ['$scope', '$http', function($scope, $http) {
 
     // initialize some variables with calls to the web API
     // $scope.getTargetTemp();
-    // $scope.getCurrentTemp();
+    $scope.getCurrentTemp();
     // $scope.getFanState();
     // $scope.getTempMode();
 
-    $scope.currentTemps = { '0': '72', '1': '70', 'average': '71' };    // temp data
+    // $scope.currentTemps = { '0': '72', '1': '70', 'average': '71' };    // temp data
     $scope.targetTemp = { 'targetTemp': '75' };                         // temp data
     $scope.targetTemp = $scope.targetTemp['targetTemp'];                // temp data
     $scope.fanState = "ON";                                            // temp data
