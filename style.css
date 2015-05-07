@@ -248,6 +248,8 @@ h1 {
 }
 #schedule table#rows tr:nth-child(even) { background-color: rgba(0,0,0,0.05); }
 
+#myChart { margin-bottom: 15px; }
+
 .flip {
     -moz-transform: scaleY(-1);
     -webkit-transform: scaleY(-1);
