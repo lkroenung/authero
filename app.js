@@ -153,18 +153,43 @@ app.controller('mainController', ['$scope', '$http', function($scope, $http) {
             });
     };
 
+    // creates a new schedule, then updates schedule list on client side
+    $scope.createSchedule = function(new_schedule) {
+        $http({method: 'POST', url: $scope.server_url + 'schedule/create/', data: new_schedule}).
+            success(function(data, status) {
+                console.log('success');
+                $scope.getSchedules();
+            }).
+            error(function(data, status) {
+                console.log('error');
+            });
+    };
+
+    $scope.getSchedules = function() {
+        $http({method: 'GET', url: $scope.server_url + 'schedule/list/'}).
+            success(function(data, status) {
+                $scope.schedules = data;
+                console.log($scope.schedules);
+            }).
+            error(function(data, status) {
+                $scope.schedules = data || "error";
+            });
+    };
+
     $scope.server_url = 'http://robertrdunn.com:8080/';
 
     $scope.currentTemps = 'init';
     $scope.targetTemp = 'init';
     $scope.fanState = 'init';
     $scope.tempMode = 'init';
+    $scope.schedules = 'init';
 
     // initialize some variables with calls to the web API
     $scope.getTargetTemp();
     $scope.getCurrentTemp();
     $scope.getFanState();
     $scope.getTempMode();
+    $scope.getSchedules();
 
     // $scope.currentTemps = { '0': '72', '1': '70', 'average': '71' };    // temp data
     // $scope.targetTemp = { 'targetTemp': '75' };                         // temp data
