@@ -16,6 +16,10 @@ app.config(function($routeProvider, $httpProvider) {
       templateUrl: 'schedule.html', 
       controller: 'mainController'
     })
+    .when('/login', {
+      templateUrl: 'login.html', 
+      controller: 'mainController'
+    })
     .otherwise({ redirectTo: '/' });
 });
 
