@@ -54,17 +54,20 @@
                     <thead>
                         <tr>
                             <td>Start</td>
+                            <td>Start</td>
                             <td>End</td>
                             <td>Temp</td>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr ng-repeat="schedule in schedules track by $index">
+                            <td>{{schedule.name}}</td>
                             <td>6:00 AM</td>
                             <td>9:00 AM</td>
                             <td>73</td>
                         </tr>
                         <tr>
+                            <td>5:00 PM</td>
                             <td>5:00 PM</td>
                             <td>10:00 PM</td>
                             <td>65</td>
