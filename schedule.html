@@ -60,9 +60,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="schedule in schedules track by $index">
-                            <td>{{schedule.name}}</td>
-                            <td>6:00 AM</td>
+                        <tr ng-repeat="row in schedules track by $index">
+                            <td>{{row.name}}</td>
+                            <td>{{row}}</td>
                             <td>9:00 AM</td>
                             <td>73</td>
                         </tr>

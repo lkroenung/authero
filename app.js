@@ -105,10 +105,12 @@ app.controller('mainController', ['$scope', '$http', function($scope, $http) {
     $scope.getFanState = function() {
         $http({method: 'GET', url: $scope.server_url + 'thermostat/fanState'}).
             success(function(data, status) {
-                $scope.currentTemps = data['fanState'];
+                // console.log('fanstatewhat', data);
+                $scope.fanState = data['fanState'];
+                // console.log($scope.currentTemps);
             }).
             error(function(data, status) {
-                $scope.currentTemps = data['fanState'] || "error";
+                $scope.fanState = data['fanState'] || "error";
             });
     };
 
@@ -131,10 +133,12 @@ app.controller('mainController', ['$scope', '$http', function($scope, $http) {
     $scope.getTempMode = function() {
         $http({method: 'GET', url: $scope.server_url + 'thermostat/tempMode'}).
             success(function(data, status) {
-                $scope.currentTemps = data['tempMode'];
+                console.log(data);
+                $scope.tempMode = data['tempMode'];
+                console.log($scope.tempMode);
             }).
             error(function(data, status) {
-                $scope.currentTemps = data['tempMode'] || "error";
+                $scope.tempMode = data['tempMode'] || "error";
             });
     };
 
@@ -168,11 +172,11 @@ app.controller('mainController', ['$scope', '$http', function($scope, $http) {
     $scope.getSchedules = function() {
         $http({method: 'GET', url: $scope.server_url + 'schedule/list/'}).
             success(function(data, status) {
-                $scope.schedules = data;
-                console.log($scope.schedules);
+                $scope.schedules = data['schedules'];
+                // console.log($scope.schedules);
             }).
             error(function(data, status) {
-                $scope.schedules = data || "error";
+                $scope.schedules = data['schedules'] || "error";
             });
     };
 
