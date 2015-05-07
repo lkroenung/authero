@@ -96,7 +96,12 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="(room, temp) in currentTemps track by $index">
-                        <td>{{room}}</td>
+                        <td ng-switch on="room">
+                            <span ng-switch-when="1">Nick's Room</span>
+                            <span ng-switch-when="2">Trevor's Room</span>
+                            <span ng-switch-when="average">Average</span>
+                        </td>
+                        <!-- <td>{{room}}</td> -->
                         <td>{{temp}}</td>
                     </tr>
                 </tbody>

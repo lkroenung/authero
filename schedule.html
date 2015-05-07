@@ -110,7 +110,16 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="point in row.events track by $index">
-                            <td>{{point.day}}</td>
+                            <td ng-switch on="point.day">
+                                <span ng-switch-when="0">Sunday</span>
+                                <span ng-switch-when="1">Monday</span>
+                                <span ng-switch-when="2">Tuesday</span>
+                                <span ng-switch-when="3">Wednesday</span>
+                                <span ng-switch-when="4">Thursday</span>
+                                <span ng-switch-when="5">Friday</span>
+                                <span ng-switch-when="6">Saturday</span>
+                                <span ng-switch-default>error</span>
+                            </td>
                             <td>{{point.time}}</td>
                             <td>{{point.temp}}</td>
                         </tr
