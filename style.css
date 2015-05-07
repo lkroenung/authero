@@ -99,53 +99,6 @@ a:hover { text-decoration: none; }
 
 .temp img { width: 90%; }
 
-
-.temp2 {
-    display: block;
-    text-align: center;
-    position: relative;
-    background-color: rgba(42,54,59, 0.7);
-    margin: 5% 5% 25px;
-    /*padding: 0 0 25px;*/
-}
-
-.temp2 .degree {
-    width: 48%;
-    display: inline-block;
-    text-align: center;
-    font-size: 5em;
-    color: #fff;
-    font-family: 'Montserrat', arial, sans-serif;
-}
-
-.temp2 .degree span {
-    font-size: 6rem;
-    vertical-align: top;
-    position: absolute;
-    color: rgba(255,255,255,0.5);
-    display: none;
-}
-
-.temp2_controls {
-    display: inline-block;
-    width: 50%;
-    position: relative;
-    top: 0px;
-}
-
-.temp2 .up, .temp2 .down {
-    display: inline-block;
-    width: 35%;
-}
-
-.temp2 .down { margin-right: 12%; }
-.temp2 .up { margin-right: 10%; }
-
-.temp2 img {
-    width: 100%;
-}
-
-
 .rooms { margin-top: 25px; padding: 15px 20px; border-radius: 15px; }
 .rooms table, #schedule table { margin: 0; color: #fff; }
 
