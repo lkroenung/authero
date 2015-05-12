@@ -173,7 +173,6 @@ app.controller('mainController', ['$scope', '$http', function($scope, $http) {
         $http({method: 'GET', url: $scope.server_url + 'schedule/list/'}).
             success(function(data, status) {
                 $scope.schedules = angular.fromJson(data['schedules']);
-                console.log($scope.schedules);
                 for (var i = 0; i < $scope.schedules.length; i++) {
                     $scope.schedules[i] = angular.fromJson($scope.schedules[i]);
                 }
@@ -191,6 +190,104 @@ app.controller('mainController', ['$scope', '$http', function($scope, $http) {
             });
     };
 
+    $scope.getTempLog = function() {
+        $http({method: 'GET', url: $scope.server_url + 'thermostat/temperatureLog/'}).
+            success(function(data, status) {
+                $scope.tempLog = data;
+                console.log(data);
+                $('#myChart').css( "height", "250px" );
+                $('#graph_loading').css( "display", "none" );
+                $scope.drawTempGraph('1');
+            }).
+            error(function(data, status) {
+                $scope.tempLog = data || "error";
+            });
+    };
+
+    $scope.drawTempGraph = function(day) {
+        var ctx = document.getElementById("myChart").getContext("2d");
+        var new_data = [];
+        var new_labels = [];
+        var old_values = [];
+
+        for (var i = 0; i < $scope.tempLog[day].length; i++) {
+            if ($.inArray($scope.tempLog[day][i]['time'].split(':')[0], old_values) == -1) {
+                new_labels.push($scope.tempLog[day][i]['time']);
+                new_data.push($scope.tempLog[day][i]['temp']);
+                old_values.push($scope.tempLog[day][i]['time'].split(':')[0]);
+            }
+        }
+        console.log(new_labels, new_data);
+        var the_data = {
+                    label: "Sunday",
+                    fillColor: "rgba(42,54,59,0.5)",
+                    strokeColor: "rgba(0,0,0,1)",
+                    pointColor: "rgba(0,0,0,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(0,0,0,1)",
+                    data: new_data
+                };
+
+        var data = {
+            labels: new_labels,
+            datasets: [
+                the_data
+            ]
+        };
+        var options = {
+            scaleLineColor: "rgba(0,0,0,.4)",
+            scaleFontColor: "#2A363B",
+
+            ///Boolean - Whether grid lines are shown across the chart
+            scaleShowGridLines : true,
+
+            //String - Colour of the grid lines
+            scaleGridLineColor : "rgba(0,0,0,.15)",
+
+            //Number - Width of the grid lines
+            scaleGridLineWidth : 1,
+
+            //Boolean - Whether to show horizontal lines (except X axis)
+            scaleShowHorizontalLines: true,
+
+            //Boolean - Whether to show vertical lines (except Y axis)
+            scaleShowVerticalLines: true,
+
+            //Boolean - Whether the line is curved between points
+            bezierCurve : true,
+
+            //Number - Tension of the bezier curve between points
+            bezierCurveTension : 0.4,
+
+            //Boolean - Whether to show a dot for each point
+            pointDot : true,
+
+            //Number - Radius of each point dot in pixels
+            pointDotRadius : 4,
+
+            //Number - Pixel width of point dot stroke
+            pointDotStrokeWidth : 1,
+
+            //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+            pointHitDetectionRadius : 20,
+
+            //Boolean - Whether to show a stroke for datasets
+            datasetStroke : true,
+
+            //Number - Pixel width of dataset stroke
+            datasetStrokeWidth : 2,
+
+            //Boolean - Whether to fill the dataset with a colour
+            datasetFill : true,
+
+            //String - A legend template
+            legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+
+        };
+        var myLineChart = new Chart(ctx).Line(data, options);
+    };
+
     $scope.server_url = 'http://robertrdunn.com:8080/';
 
     $scope.currentTemps = ' ';
@@ -198,6 +295,7 @@ app.controller('mainController', ['$scope', '$http', function($scope, $http) {
     $scope.fanState = ' ';
     $scope.tempMode = ' ';
     $scope.schedules = ' ';
+    $scope.tempLog = ' ';
 
     // initialize some variables with calls to the web API
     $scope.getTargetTemp();
@@ -205,6 +303,7 @@ app.controller('mainController', ['$scope', '$http', function($scope, $http) {
     $scope.getFanState();
     $scope.getTempMode();
     $scope.getSchedules();
+    $scope.getTempLog();
 
     // $scope.currentTemps = { '0': '72', '1': '70', 'average': '71' };    // temp data
     // $scope.targetTemp = { 'targetTemp': '75' };                         // temp data

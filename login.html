@@ -1,8 +1,5 @@
 <script>
 
-    $('.fans .switch').css( "bottom", "70px" );
-    $('.setting .switch').css( "bottom", "70px" );
-
     document.getElementById("loginButton").onclick = function () {
         location.href = "/authero/";
     };
@@ -13,21 +10,6 @@
 
     <div class="row menu">
         &nbsp;
-        <!-- <div class="logo tab">
-            <a href="#"><img src="_img/authero-logo.png" /></a>
-        </div>
-
-        <div class="tabs">
-            <div class="tab highlight col-xs-5">
-                <a href="#">Home</a>
-            </div>
-
-            <div class="tab col-xs-5">
-                <a href="#/schedule">Schedule</a>
-            </div>
-
-            <div class="clear"></div>
-        </div> -->
     </div>
 
     <div class="row main">
@@ -46,7 +28,6 @@
         <div class="rooms col-xs-12 ">
             
         <form id="login">
-            <!-- <h1>Login</h1> -->
             <input type="text" name="login" value="" placeholder="Username">
             <input type="password" name="password" value="" placeholder="Password">
             <button id="loginButton">Login</button>
