@@ -219,6 +219,8 @@ app.controller('mainController', ['$scope', '$http', 'tempCache', function($scop
     // get the temperature logs for use in graphs
     $scope.getTempLog = function() {
 
+        // check and see if there's something already in the cache
+        // if not call the web API
         var cache = tempCache.get('templogs');
         if (cache) {
             $scope.tempLog = cache;
@@ -252,6 +254,7 @@ app.controller('mainController', ['$scope', '$http', 'tempCache', function($scop
         var new_labels = [];
         var old_values = [];
 
+        // use only one (time, temp) set per hour
         for (var i = 0; i < $scope.tempLog[day].length; i++) {
             if ($.inArray($scope.tempLog[day][i]['time'].split(':')[0], old_values) == -1) {
                 new_labels.push($scope.tempLog[day][i]['time']);
@@ -259,7 +262,7 @@ app.controller('mainController', ['$scope', '$http', 'tempCache', function($scop
                 old_values.push($scope.tempLog[day][i]['time'].split(':')[0]);
             }
         }
-        console.log(new_labels, new_data);
+
         var the_data = {
                     label: "Sunday",
                     fillColor: "rgba(42,54,59,0.5)",
@@ -327,12 +330,13 @@ app.controller('mainController', ['$scope', '$http', 'tempCache', function($scop
             legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
 
         };
+
+        // draw the graph
         var myLineChart = new Chart(ctx).Line(data, options);
     };
 
     // $scope.server_url = 'http://robertrdunn.com:8080/';
     $scope.server_url = 'http://authero.chickenkiller.com:8080/';
-    // $scope.server_url = 'localhost:8080/';
 
     $scope.currentTemps = ' ';
     $scope.targetTemp = ' ';
