@@ -207,7 +207,7 @@ app.controller('mainController', ['$scope', '$http', 'tempCache', function($scop
         $http({method: 'GET', url: $scope.server_url + 'user/login/', data: { 'username': $scope.username, 'password': $scope.password }}).
             success(function(data, status) {
                 console.log('success');
-                location.href = "/authero/";
+                location.href = "/authero/#/home";
             }).
             error(function(data, status) {
                 console.log('error');
