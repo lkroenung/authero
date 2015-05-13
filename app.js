@@ -9,24 +9,31 @@ app.config(function($routeProvider, $httpProvider) {
 
     $routeProvider
     .when('/', {
-      templateUrl: 'home.html', 
+      templateUrl: 'login.html', 
       controller: 'mainController'
     })
     .when('/schedule', {
       templateUrl: 'schedule.html', 
       controller: 'mainController'
     })
-    .when('/login', {
-      templateUrl: 'login.html', 
+    .when('/home', {
+      templateUrl: 'home.html', 
       controller: 'mainController'
     })
     .otherwise({ redirectTo: '/' });
 });
 
-app.controller('mainController', ['$scope', '$http', function($scope, $http) {
+app.factory('tempCache', function($cacheFactory) {
+    return $cacheFactory('templogs');
+});
+
+app.controller('mainController', ['$scope', '$http', 'tempCache', function($scope, $http, tempCache) {
 
     $http.defaults.useXDomain = true;
+    $scope.username = '';
+    $scope.password = '';
 
+    // show/hide the fan mode menu
     $scope.toggleFanMenu = function() {
         if ($('.fans .switch').css('display') == 'none') {
             $('.fans .switch').css( "display", "block" );
@@ -36,6 +43,7 @@ app.controller('mainController', ['$scope', '$http', function($scope, $http) {
         }
     };
 
+    // show.hide the temp mode menu
     $scope.toggleTempMenu = function() {
         if ($('.setting .switch').css('display') == 'none') {
             $('.setting .switch').css( "display", "block" );
@@ -169,6 +177,7 @@ app.controller('mainController', ['$scope', '$http', function($scope, $http) {
             });
     };
 
+    // returns all schedules in the database
     $scope.getSchedules = function() {
         $http({method: 'GET', url: $scope.server_url + 'schedule/list/'}).
             success(function(data, status) {
@@ -182,28 +191,61 @@ app.controller('mainController', ['$scope', '$http', function($scope, $http) {
             });
     };
 
+    // selects a schedule to use
     $scope.selectSchedule = function(schedule) {
-        $http({method: 'PUT', url: $scope.server_url + 'schedule/select/'}).
+        $http({method: 'PUT', url: $scope.server_url + 'thermostat/selectSchedule/', data: { 'scheduleName': schedule }}).
             success(function(data, status) {
+                console.log('success');
             }).
             error(function(data, status) {
+                console.log('error');
             });
     };
 
+    // login function that uses data from the login form
+    $scope.login = function() {
+        $http({method: 'GET', url: $scope.server_url + 'user/login/', data: { 'username': $scope.username, 'password': $scope.password }}).
+            success(function(data, status) {
+                console.log('success');
+                location.href = "/authero/";
+            }).
+            error(function(data, status) {
+                console.log('error');
+                console.log($scope.username);
+                console.log($scope.password);
+            });
+    };
+
+    // get the temperature logs for use in graphs
     $scope.getTempLog = function() {
-        $http({method: 'GET', url: $scope.server_url + 'thermostat/temperatureLog/'}).
-            success(function(data, status) {
-                $scope.tempLog = data;
-                console.log(data);
-                $('#myChart').css( "height", "250px" );
-                $('#graph_loading').css( "display", "none" );
-                $scope.drawTempGraph('1');
-            }).
-            error(function(data, status) {
-                $scope.tempLog = data || "error";
-            });
+
+        var cache = tempCache.get('templogs');
+        if (cache) {
+            $scope.tempLog = cache;
+            $('#myChart').css( "height", "250px" );
+            $('#graph_loading').css( "display", "none" );
+            // if (document.getElementById("myChart").getContext("2d") !== null) {
+            //    $scope.drawTempGraph('1'); 
+            // }
+        }
+        else {
+            $http({method: 'GET', url: $scope.server_url + 'thermostat/temperatureLog/'}).
+                success(function(data, status) {
+                    tempCache.put('templogs', data);
+                    $scope.tempLog = tempCache.get('templogs');;
+                    console.log(data);
+                    $('#myChart').css( "height", "250px" );
+                    $('#graph_loading').css( "display", "none" );
+                    $scope.drawTempGraph('1');
+                }).
+                error(function(data, status) {
+                    $scope.tempLog = data || "error";
+                });            
+        }
+
     };
 
+    // draw a temperature log graph for a certain day
     $scope.drawTempGraph = function(day) {
         var ctx = document.getElementById("myChart").getContext("2d");
         var new_data = [];
@@ -288,7 +330,8 @@ app.controller('mainController', ['$scope', '$http', function($scope, $http) {
         var myLineChart = new Chart(ctx).Line(data, options);
     };
 
-    $scope.server_url = 'http://robertrdunn.com:8080/';
+    // $scope.server_url = 'http://robertrdunn.com:8080/';
+    $scope.server_url = 'http://authero.chickenkiller.com:8080/';
 
     $scope.currentTemps = ' ';
     $scope.targetTemp = ' ';

@@ -4,12 +4,12 @@
     <div class="row menu">
 
         <div class="logo tab">
-            <a href="#"><img src="_img/authero-logo.png" /></a>
+            <a href="#/home"><img src="_img/authero-logo.png" /></a>
         </div>
 
         <div class="tabs">
             <div class="tab highlight col-xs-5">
-                <a href="#">Home</a>
+                <a href="#/home">Home</a>
             </div>
 
             <div class="tab col-xs-5">
@@ -87,7 +87,7 @@
                     <tr ng-repeat="(room, temp) in currentTemps track by $index">
                         <td ng-switch on="room">
                             <span ng-switch-when="1">Nick's Room</span>
-                            <span ng-switch-when="2">Trevor's Room</span>
+                            <span ng-switch-when="2">Ben's Room</span>
                             <span ng-switch-when="average">Average</span>
                         </td>
                         <td>{{temp}}</td>
