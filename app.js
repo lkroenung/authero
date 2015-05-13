@@ -331,8 +331,8 @@ app.controller('mainController', ['$scope', '$http', 'tempCache', function($scop
     };
 
     // $scope.server_url = 'http://robertrdunn.com:8080/';
-    // $scope.server_url = 'http://authero.chickenkiller.com:8080/';
-    $scope.server_url = 'localhost:8080/';
+    $scope.server_url = 'http://authero.chickenkiller.com:8080/';
+    // $scope.server_url = 'localhost:8080/';
 
     $scope.currentTemps = ' ';
     $scope.targetTemp = ' ';
